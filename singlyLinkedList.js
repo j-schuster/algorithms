@@ -57,9 +57,70 @@ class SinglyLinkedList {
         }
         return current;
     }
+
+    shift() {
+        if (!this.head) return undefined;
+
+        let current = this.head;
+        this.head = current.next;
+        this.length--;
+        if (this.length === 0) {
+            this.tail = null;
+        }
+        return current;
+    }
+
+    unshift(value) {
+        const newNode = new Node(value);
+
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+            this.length++;
+        }
+        return this;
+
+    }
+
+    get(index) {
+        if (!this.head || index < 0 || index >= this.length) return undefined;
+
+        let currentNum = 0;
+        let current = this.head;
+
+        while (current.next && currentNum < index) {
+            current = current.next;
+            currentNum++;
+        }
+
+        return current;
+    }
 }
 
-const linkedList = new SinglyLinkedList();
-linkedList.push('hello');
-linkedList.push('there');
-linkedList.push('bro');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
